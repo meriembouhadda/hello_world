@@ -9,7 +9,7 @@ COPY ./ ./
 import kfp
 import kfp.components as comp
 @kfp.dsl.component
-def hello_world():
+def test():
     # Defining component configuration
     hello_component = kfp.dsl.ContainerOp(
         name='hello-world',
@@ -22,7 +22,7 @@ def hello_world():
   description="hello world script"
 )
 def hi():
-    hello = hello_world()
+    hello = test()
     hello.execution_options.caching_strategy.max_cache_staleness = "P0D"
 kfp.compiler.Compiler().compile(hi, 'hello_world.zip')
 client = kfp.Client(host='https://b5667049ffd46dc-dot-us-central1.pipelines.googleusercontent.com')
