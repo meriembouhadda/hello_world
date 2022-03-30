@@ -9,7 +9,7 @@ def test():
     hello_component = kfp.dsl.ContainerOp(
         name='hello-world',
         image='docker.io/mariembouhadda/hello-world',
-        command=['python', 'kiki.py'],
+        command=['python', 'hello_world.py'],
         )
     return hello_component
 @kfp.dsl.pipeline(
