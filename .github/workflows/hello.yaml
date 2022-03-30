@@ -1,0 +1,27 @@
+name: Compile and Deploy Kubeflow hello world 
+on: [push]
+
+# Set environmental variables
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: checkout files in repo
+      uses: actions/checkout@master
+
+ hello-world:
+    steps:
+    - name: hello run
+      id: kubeflow
+      uses: meriembouhadda/hello_world@master
+      with:
+        KUBEFLOW_URL: ${{ secrets.KUBEFLOW_URL }}
+        ENCODED_GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GKE_KEY }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        PIPELINE_CODE_PATH: "hello_world.py"
+        PIPELINE_FUNCTION_NAME: "hi"
+        PIPELINE_PARAMETERS_PATH: "pipeline.yaml"
+        EXPERIMENT_NAME: "hello world"
+        RUN_PIPELINE: True
+        VERSION_GITHUB_SHA: False
