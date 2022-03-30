@@ -5,12 +5,14 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-    
-    - name: hello run
+    - name: checkout files in repo
+      uses: actions/checkout@master
+
+    - name: Submit Kubeflow pipeline
       id: kubeflow
-      uses: meriembouhadda/hello_world@master
+      uses: NikeNano/kubeflow-github-action@master
       with:
         KUBEFLOW_URL: ${{ secrets.KUBEFLOW_URL }}
         ENCODED_GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GKE_KEY }}
