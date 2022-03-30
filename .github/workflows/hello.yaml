@@ -7,11 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - name: checkout files in repo
-      uses: actions/checkout@master
-
-
-
+    
     - name: hello run
       id: kubeflow
       uses: meriembouhadda/hello_world@master
