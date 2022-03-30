@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-script-
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.8.11, pipelines.kubeflow.org/pipeline_compilation_time: '2022-03-30T09:20:26.854173',
+    pipelines.kubeflow.org/pipeline_spec: '{"description": "hello world script", "name":
+      "hello world script"}'}
+  labels: {pipelines.kubeflow.org/kfp_sdk_version: 1.8.11}
+spec:
+  entrypoint: hello-world-script
+  templates:
+  - name: hello-world
+    container:
+      command: [python, hello_world.py]
+      image: docker.io/mariembouhadda/hello-world
+    metadata:
+      labels:
+        pipelines.kubeflow.org/kfp_sdk_version: 1.8.11
+        pipelines.kubeflow.org/pipeline-sdk-type: kfp
+        pipelines.kubeflow.org/enable_caching: "true"
+      annotations: {pipelines.kubeflow.org/component_spec: '{"name": "Hello world"}',
+        pipelines.kubeflow.org/max_cache_staleness: P0D}
+  - name: hello-world-script
+    dag:
+      tasks:
+      - {name: hello-world, template: hello-world}
+  arguments:
+    parameters: []
+  serviceAccountName: pipeline-runner
