@@ -10,8 +10,8 @@ jobs:
     - name: checkout files in repo
       uses: actions/checkout@master
 
- hello-world:
-    steps:
+
+
     - name: hello run
       id: kubeflow
       uses: meriembouhadda/hello_world@master
