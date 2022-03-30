@@ -8,6 +8,8 @@ COPY ./ ./
 """
 import kfp
 import kfp.components as comp
+from kubernetes.client.models import V1EnvVar
+
 @kfp.dsl.component
 def test():
     # Defining component configuration
