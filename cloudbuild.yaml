@@ -1,0 +1,30 @@
+steps:
+    - name: 'gcr.io/cloud-builders/docker'
+      args: [ 'build', '-t', 'gcr.io/kheopsys-data-lab/trainer-image:latest', '.' ]
+
+   
+    
+    - name: 'gcr.io/cloud-builders/docker'
+      args: [ 'build', '-t', 'gcr.io/kheopsys-data-lab/base-image:latest', '.' ]
+
+    
+    
+#  Compile the pipeline
+    - name: 'gcr.io/kheopsys-data-lab/kfp-cli'
+      entrypoint: 'python3'
+      args: ['dsl-compile --py titanic_ML_pipeline.py --output titanic_ML_pipeline.yaml']
+      env:
+         - 'BASE_IMAGE=gcr.io/kheopsys-data-lab/base-image:latest'
+         - 'TRAINER_IMAGE=gcr.io/kheopsys-data-lab/trainer-image'
+         - 'RUNTIME_VERSION=1.15'
+         - 'PYTHON_VERSION=3.7'
+         - 'COMPONENT_URL_SEARCH_PREFIX=https://raw.githubusercontent.com/kubeflow/pipelines/0.2.5/components/gcp/'
+         - 'USE_KFP_SA=False'
+         
+         
+    - name: 'gcr.io/kheopsys-data-lab/kfp-cli'
+      args: ['-c','kfp --endpoint b5667049ffd46dc-dot-us-central1.pipelines.googleusercontent.com/ pipeline upload -p titanic_ML_pipeline.yaml']
+
+images:
+    - 'gcr.io/kheopsys-data-lab/trainer-image:latest'
+    - 'gcr.io/kheopsys-data-lab/base-image:latest'
