@@ -1,0 +1,18 @@
+steps:
+
+#  Compile the pipeline
+    - name: 'gcr.io/kheopsys-data-lab/hello_world:574f2f7b176d50b2765d846d13348eeb08751c25'
+      entrypoint: 'python3'
+      args: ['dsl-compile --py hello_world_launcher.py --output pipeline.yaml']
+      env:
+         - 'RUNTIME_VERSION=1.15'
+         - 'PYTHON_VERSION=3.7'
+         - 'COMPONENT_URL_SEARCH_PREFIX=https://raw.githubusercontent.com/kubeflow/pipelines/0.2.5/components/gcp/'
+         - 'USE_KFP_SA=False'
+         
+         
+    - name: 'gcr.io/kheopsys-data-lab/hello_world:574f2f7b176d50b2765d846d13348eeb08751c25'
+      args: ['-c','kfp --endpoint b5667049ffd46dc-dot-us-central1.pipelines.googleusercontent.com/ pipeline upload -p pipeline.yaml']
+
+
+

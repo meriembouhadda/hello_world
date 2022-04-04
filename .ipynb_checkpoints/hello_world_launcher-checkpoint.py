@@ -1,9 +1,4 @@
-!docker login -u mariembouhadda -p sS58169362
-%%writefile Dockerfile
-FROM tensorflow/tensorflow
-COPY ./ ./
-!docker build -t mariembouhadda/hello-world .
-!docker push mariembouhadda/hello-world
+
 import kfp
 import kfp.components as comp
 @kfp.dsl.component
