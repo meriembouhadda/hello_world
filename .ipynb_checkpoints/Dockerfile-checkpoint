@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow
+FROM python:3.7
 
 RUN git clone https://github.com/meriembouhadda/hello_world.git
 
