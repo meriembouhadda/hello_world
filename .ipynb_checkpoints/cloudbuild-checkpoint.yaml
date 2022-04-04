@@ -1,6 +1,6 @@
 steps:
          
-    - name: 'gcr.io/kheopsys-data-lab/hello_world'
+    - name: 'gcr.io/kheopsys-data-lab/hello_world:574f2f7b176d50b2765d846d13348eeb08751c25'
       args: ['-c','kfp --endpoint b5667049ffd46dc-dot-us-central1.pipelines.googleusercontent.com/ pipeline upload -p pipeline.yaml']
 
 
