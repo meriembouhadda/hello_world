@@ -3,9 +3,9 @@ FROM python:3.7
 #RUN git clone https://github.com/meriembouhadda/hello_world.git
 
 COPY hello_world_launcher.py .
-COPY hello_world.py .
+COPY hello_world.py . 
 COPY requirements.txt .
-
+COPY ./ ./
 RUN pip install -r requirements.txt
 #ARG project_id='kheopsys-data-lab'
 #ARG bucket='ml-pipeline-309409_bucket'
