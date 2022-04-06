@@ -6,7 +6,7 @@ def hello_world():
     # Defining component configuration
     hello_component = kfp.dsl.ContainerOp(
         name='hello-world',
-        image='docker.io/mariembouhadda/hello-world-test:latest',
+        image='docker.io/mariembouhadda/hello-world:latest',
         command=['python', 'hello_world.py'],
         )
     return hello_component
