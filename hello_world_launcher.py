@@ -6,7 +6,7 @@ def hello_world():
     # Defining component configuration
     hello_component = kfp.dsl.ContainerOp(
         name='hello-world',
-        image='docker.io/mariembouhadda/hello-world-test:latest',
+        image='docker.io/mariembouhadda/hello-world:latest',
         command=['python', 'hello_world.py'],
         )
     return hello_component
@@ -23,4 +23,5 @@ EXPERIMENT_NAME = 'hello world docker'
 
 experiment = client.create_experiment(name=EXPERIMENT_NAME)
 for i in range (1):
-    run = client.run_pipeline(experiment.id, 'hello world docker', 'hello_world.zip')
+    #run = client.run_pipeline(experiment.id, 'hello world docker', 'hello_world.zip')
+    client.run_pipeline(experiment.id, 'hello world docker', 'hello_world.zip')
