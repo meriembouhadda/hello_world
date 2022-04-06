@@ -19,9 +19,10 @@ def hi():
     hello.execution_options.caching_strategy.max_cache_staleness = "P0D"
 kfp.compiler.Compiler().compile(hi, 'hello_world.zip')
 client = kfp.Client(host='https://21306363b1ebd301-dot-us-central1.pipelines.googleusercontent.com')
-EXPERIMENT_NAME = 'hello world'
+EXPERIMENT_NAME = 'hello world launch'
 
 experiment = client.create_experiment(name=EXPERIMENT_NAME)
 #for i in range (1):
     #run = client.run_pipeline(experiment.id, 'hello world dok', 'hello_world.zip')
-client.run_pipeline(experiment.id, 'hello world', 'hello_world.zip')
+for i in range (1):
+    client.run_pipeline(experiment.id, 'hello world launch', 'hello_world.zip')
