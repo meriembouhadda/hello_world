@@ -22,6 +22,6 @@ client = kfp.Client(host='https://21306363b1ebd301-dot-us-central1.pipelines.goo
 EXPERIMENT_NAME = 'hello world docker'
 
 experiment = client.create_experiment(name=EXPERIMENT_NAME)
-for i in range (1):
-    #run = client.run_pipeline(experiment.id, 'hello world docker', 'hello_world.zip')
-    client.run_pipeline(experiment.id, 'hello world docker', 'hello_world.zip')
+#for i in range (1):
+run = client.run_pipeline(experiment.id, 'hello world docker', 'hello_world.zip')
+    #client.run_pipeline(experiment.id, 'hello world docker', 'hello_world.zip')
