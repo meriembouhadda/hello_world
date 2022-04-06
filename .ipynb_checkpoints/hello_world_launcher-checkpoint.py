@@ -18,7 +18,7 @@ def hi():
     hello = hello_world()
     hello.execution_options.caching_strategy.max_cache_staleness = "P0D"
 kfp.compiler.Compiler().compile(hi, 'hello_world.zip')
-client = kfp.Client(host='https://b5667049ffd46dc-dot-us-central1.pipelines.googleusercontent.com')
+client = kfp.Client(host='https://21306363b1ebd301-dot-us-central1.pipelines.googleusercontent.com')
 EXPERIMENT_NAME = 'hello world'
 
 experiment = client.create_experiment(name=EXPERIMENT_NAME)
